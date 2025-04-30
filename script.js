@@ -285,7 +285,6 @@ async function sendSentence() {
         return;
     }
 
-    // Use the grammar point string from the current object
     const grammarPointString = currentGrammarPointObject ? currentGrammarPointObject.grammarPoint : '';
     const chapterName = currentChapter;
 
@@ -294,46 +293,58 @@ async function sendSentence() {
          return;
      }
 
-
     // Hide the send button while processing
     sendButton.classList.add('hidden');
     showHintButton.classList.add('hidden'); // Hide hint button after sending
 
-    // --- !!! SECURITY WARNING !!! ---
-    // In a real application, you would send `userSentence`, `grammarPointString`, and `chapterName`
-    // to your backend server using the fetch API.
-    // Your backend would then securely call the OpenRouter API.
-    // NEVER put your API key directly in this frontend code.
-    // --- Simulated API Call ---
-
     feedbackTextParagraph.textContent = 'Sending to AI...';
     userSentenceTextArea.disabled = true; // Disable input while sending
 
-    // Simulate a network request delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // --- REPLACE SIMULATED API CALL WITH THIS ---
+    try {
+        const backendUrl = 'https://Kakapo2.pythonanywhere.com/api/check-sentence'; // Your PythonAnywhere backend URL
 
-    // Simulate an AI response
-    let simulatedFeedback = "";
-    // Use the grammar point string for the simulation
-    const grammarKeywords = grammarPointString.replace(/[^\w\s]/g, '').split(/\s+/);
+        const response = await fetch(backendUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                sentence: userSentence,
+                grammar_point: grammarPointString,
+                chapter_name: chapterName // Send chapter name for context in backend prompt
+            })
+        });
 
-    // Simple check if any of the keywords are in the user sentence
-    const usesGrammarKeyword = grammarKeywords.some(keyword => userSentence.includes(keyword));
+        if (!response.ok) {
+            // Handle HTTP errors
+            const errorData = await response.json();
+            throw new Error(`Backend error: ${response.status} - ${errorData.error || response.statusText}`);
+        }
 
-    if (usesGrammarKeyword) {
-         simulatedFeedback = `That's a good sentence using "${grammarPointString}"! Keep up the great work. This grammar point was from ${chapterName}.`;
-    } else {
-         simulatedFeedback = `Try again. Your sentence "${userSentence}" doesn't seem to use "${grammarPointString}". Focus on how this grammar point was used in ${chapterName}.`;
+        const result = await response.json();
+        const feedbackContent = result.feedback; // Assuming your backend sends back a JSON object like { "feedback": "..." }
+
+        feedbackTextParagraph.textContent = feedbackContent;
+
+    } catch (error) {
+        console.error('Error sending sentence to backend:', error);
+        feedbackTextParagraph.textContent = `Error: Could not get feedback from AI. ${error.message}`;
+    } finally {
+        userSentenceTextArea.disabled = false; // Re-enable input
+        // Show the Next button regardless of success/failure
+        nextButton.classList.remove('hidden');
     }
+    // --- END OF REPLACEMENT ---
 
-
-    feedbackTextParagraph.textContent = simulatedFeedback;
-    userSentenceTextArea.disabled = false; // Re-enable input
-    // userSentenceTextArea.value = ''; // Don't clear input until Next is clicked
-
-    // Show the Next button
-    nextButton.classList.remove('hidden');
+    // Remove the old simulated delay and subsequent lines:
+    // await new Promise(resolve => setTimeout(resolve, 1500));
+    // ... simulated AI response logic ...
+    // feedbackTextParagraph.textContent = simulatedFeedback;
+    // userSentenceTextArea.disabled = false;
+    // nextButton.classList.remove('hidden');
 }
+
 
 // Toggle visibility of hint sections
 function toggleHint() {
