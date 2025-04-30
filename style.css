@@ -1,0 +1,270 @@
+body {
+    font-family: 'Nunito', sans-serif; /* Changed to Nunito */
+    background-color: #f0e6d6; /* Soft background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #333;
+    padding: 20px; /* Add some padding for smaller screens */
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px; /* Limit the max width of the panel */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align panel to the top of container */
+}
+
+.panel {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%; /* Make panel take full width of container */
+    box-sizing: border-box;
+    position: relative; /* Needed for absolute positioning of settings button */
+}
+
+#main-title {
+    font-family: 'Pacifico', cursive; /* More decorative title font */
+    color: #5a4a42; /* Darker warm color */
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+#subtitle {
+    font-family: 'Nunito', sans-serif; /* Consistent with body */
+    color: #6b5e56; /* Slightly lighter warm color */
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+#grammar-prompt {
+    background-color: #e2d8c8; /* Lighter warm background for prompt */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 1em;
+}
+
+#grammar-prompt strong {
+    color: #5a4a42;
+    display: block; /* Make the strong tag a block for spacing */
+    margin-bottom: 5px;
+}
+
+/* Style for the new prompt sections (example and explanation) */
+.prompt-section {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed #bfae9f; /* Dashed border for separation */
+}
+
+#example-sentence {
+    white-space: pre-wrap; /* Preserve line breaks and spaces */
+    word-wrap: break-word; /* Break long words */
+    font-family: 'Nunito', sans-serif; /* Keep consistent font */
+    background-color: #f8f5f0; /* Slightly different background */
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto; /* Add scroll for very long lines if necessary */
+}
+
+#explanation-text {
+     white-space: pre-wrap; /* Preserve line breaks from explanation */
+     word-wrap: break-word;
+     font-family: 'Nunito', sans-serif; /* Keep consistent font */
+}
+
+/* Style for the hint button */
+.hint-button {
+    background-color: #c0a3b7; /* A soft purple/pink */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add some space above */
+}
+
+.hint-button:hover {
+    background-color: #a38b9a;
+}
+
+
+#user-sentence {
+    width: calc(100% - 20px); /* Adjust width accounting for padding/border */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Nunito', sans-serif; /* Keep consistent font */
+    font-size: 1em;
+    resize: vertical; /* Allow vertical resizing */
+}
+
+#send-button, #next-button {
+    background-color: #7a9e9f; /* Calm blue-green */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    margin: 5px; /* Add margin for spacing between buttons */
+}
+
+#send-button:hover, #next-button:hover {
+    background-color: #638b8c;
+}
+
+#ai-feedback {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: left;
+}
+
+#ai-feedback h2 {
+    color: #5a4a42;
+    margin-top: 0;
+    font-size: 1.3em;
+}
+
+#feedback-text {
+    color: #333;
+    white-space: pre-wrap; /* Preserve whitespace and line breaks from AI response */
+}
+
+.settings-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.settings-button:hover {
+    background-color: #bbb;
+}
+
+/* Utility class to hide elements */
+.hidden {
+    display: none;
+}
+
+/* Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black with opacity */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Center the modal */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Adjust width */
+    max-width: 600px; /* Max width of modal */
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#chapter-settings, #grammar-settings {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    text-align: left;
+}
+
+#chapter-settings h3, #grammar-settings h3 {
+    color: #5a4a42;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+#grammar-settings p {
+    font-style: italic;
+    color: #666;
+}
+
+#grammar-settings div {
+    margin-top: 10px;
+}
+
+#save-settings-button {
+    background-color: #7a9e9f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    display: block; /* Make button a block element */
+    width: 100%; /* Full width in modal */
+    margin-top: 20px;
+}
+
+#save-settings-button:hover {
+     background-color: #638b8c;
+}
+
+/* Style checkboxes and labels for better spacing/alignment */
+#chapter-settings label,
+#grammar-settings label {
+    display: block; /* Each option on a new line */
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+#chapter-settings input[type="checkbox"],
+#grammar-settings input[type="checkbox"] {
+    margin-right: 8px;
+    vertical-align: middle;
+}

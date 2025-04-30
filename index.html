@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Grammar Practice</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <div id="practice-panel" class="panel">
+            <h1 id="main-title">日本語の練習</h1>
+            <p id="subtitle">Practice making sentences with specific grammar points.</p>
+
+            <div id="grammar-prompt">
+                <p><strong>Chapter:</strong> <span id="chapter-name"></span></p>
+                <p><strong>Grammar Point:</strong> <span id="grammar-point-text"></span></p>
+
+                 <button id="show-hint-button" class="hint-button hidden">Show Hint</button>
+
+                 <div id="example-section" class="prompt-section hidden">
+                     <strong>Example Sentence:</strong>
+                    <pre id="example-sentence"></pre> </div>
+                 <div id="explanation-section" class="prompt-section hidden">
+                    <strong>Explanation:</strong>
+                    <p id="explanation-text"></p>
+                 </div>
+            </div>
+
+            <textarea id="user-sentence" placeholder="Write your example sentence here..." rows="4"></textarea>
+
+            <button id="send-button">Send</button>
+            <button id="next-button" class="hidden">Next</button>
+
+            <div id="ai-feedback">
+                <h2>AI Feedback</h2>
+                <p id="feedback-text"></p>
+            </div>
+
+            <button id="settings-button" class="settings-button">Settings</button>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Settings</h2>
+
+            <div id="chapter-settings">
+                <h3>Select Chapters</h3>
+                </div>
+
+            <div id="grammar-settings">
+                 <h3>Select Grammar Points (in selected chapters)</h3>
+                 <p>Select a chapter above to see its grammar points.</p>
+                 </div>
+
+
+            <button id="save-settings-button">Save Settings</button>
+        </div>
+    </div>
+
+    <script src="japaneseData.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
