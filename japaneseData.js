@@ -2,15 +2,15 @@
 
 const textbookData = [
     {
-        chapter: "Minna no Nihongo I - Lesson 1",
+        chapter: "Lesson 1",
         grammar: [
             {
-                grammarPoint: "Noun 1 は Noun 2 です",
-                exampleSentence: "わたし は マイク ミラー です。\nI am Mike Miller.",
-                explanation: "This is the basic sentence structure in Japanese, equivalent to 'X is Y'.\nは (pronounced 'wa') is the topic particle, indicating what the sentence is about.\nです (desu) is a polite copula, similar to 'is', 'am', 'are'."
+                grammarPoint: "これ／それ／あれ／どれ",
+                exampleSentence: "これはわたしのペンです。",
+                explanation: `これ, それ, and あれ are words used to refer to things relative to the speaker's position. これ refers to something close to the speaker ("this thing here"). それ refers to something far from the speaker, but close to the listener ("that thing in front of you"). あれ refers to something far from both the speaker and the listener ("that thing over there").`
             },
             {
-                grammarPoint: "Noun 1 は Noun 2 じゃありません (では ありません)",
+                grammarPoint: "Verb Conjugation (Long Form: ～ます・～ません)",
                 exampleSentence: "わたし は エンジニア じゃありません。\nI am not an engineer.",
                 explanation: "This is the negative form of です, meaning 'X is not Y'.\nじゃありません (ja arimasen) is the common negative form, often used in conversation.\nでは ありません (dewa arimasen) is a more formal negative form."
             },
